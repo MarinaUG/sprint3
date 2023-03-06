@@ -1,22 +1,22 @@
 // Exercise 7
 
 function validate() {
-	var error = 0;
+	let error = 0;
 	// Get the input fields
-	var fName = document.getElementById("fName");
-	var fEmail = document.getElementById("fEmail");
-	var fAddress = document.getElementById("fAddress");
-	var fLastN = document.getElementById("fLastN");
-	var fPassword = document.getElementById("fPassword");
-	var fPhone = document.getElementById("fPhone");
+	let fName = document.getElementById("fName");
+	let fEmail = document.getElementById("fEmail");
+	let fAddress = document.getElementById("fAddress");
+	let fLastN = document.getElementById("fLastN");
+	let fPassword = document.getElementById("fPassword");
+	let fPhone = document.getElementById("fPhone");
 
 	// Get the error elements
-	var errorName = document.getElementById("errorName");
-	var errorEmail = document.getElementById("errorEmail");
-	var errorPhone = document.getElementById("errorPhone");
-	var errorLastN = document.getElementById("errorLastN");
-	var errorPassword = document.getElementById("errorPassword");
-	var errorAdress = document.getElementById("errorAddress");
+	let errorName = document.getElementById("errorName");
+	let errorEmail = document.getElementById("errorEmail");
+	let errorPhone = document.getElementById("errorPhone");
+	let errorLastN = document.getElementById("errorLastN");
+	let errorPassword = document.getElementById("errorPassword");
+	let errorAdress = document.getElementById("errorAddress");
 
 	let regExpName=/([A-Z])\w+/g;
 	let regExpLastN=/([A-Z])\w+/g;

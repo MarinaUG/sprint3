@@ -1,5 +1,5 @@
 // If you have time, you can move this variable "products" to a json or js file and load the data in this js. It will look more professional
-var products = [{
+const products = [{
         id: 1,
         name: 'cooking oil',
         price: 10.5,
@@ -63,11 +63,11 @@ var products = [{
     }
 ]
 // Array with products (objects) added directly with push(). Products in this array are repeated.
-var cartList = [];
+let cartList = [];
 
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
-var cart = [];
-var total = 0;
+let cart = [];
+let total = 0;
 
 // Exercise 1
 function buy(id) {
@@ -87,8 +87,12 @@ function buy(id) {
 
 // Exercise 2
 function cleanCart() {
-    cartList.length = 0;
-    console.log(cartList);
+   cartList.length = 0;
+   cart.length=0;
+   console.log("neteja",cart);
+//    document.getElementById("cart_list").style.display="none";
+   document.getElementById("cart_list").innerHTML="";
+   document.getElementById("total_price").style.display="none";
 }
 
 // Exercise 3
@@ -123,42 +127,69 @@ function generateCart(cartList) {
 }
 
 // Exercise 5
-function applyPromotionsCart(cart) {
+function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
    
     for (i = 0; i < cart.length; i++) {
-        if (cart[i].id = 1 && cart[i].quantity > 2) {
+        if (cart[i].id == 1 && cart[i].quantity > 2) {
             cart[i].price = 10;
-            console.log(cart);
+           
         }
-        if (cart[i].id = 3 && cart[i].quantity > 9) {
+        if (cart[i].id == 3 && cart[i].quantity > 9) {
             cart[i].price = parseFloat(cart[i].price * (1 / 3)).toFixed(2);
-            console.log(cart);
+           
         }
+       
     } 
 }
 
 // Exercise 6
-function printCart() {
+ function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
-    applyPromotionsCart(cart);
+     applyPromotionsCart(cart);
     let cartItems=document.getElementById("cart_list");
     let totalPrice=document.getElementById("total_price");
     let totalProduct=[];
+    let sumTotal=0;
     for(i=0; i<cart.length;i++){
         totalProduct[i]=cart[i].price*cart[i].quantity;
-        cartItems.innerHTML+= '<th scope="row">'+cart[i].name+'</th><td>$'+cart[i].price+'</td><td>'+cart[i].quantity+'</td><td>$'+totalProduct[i]+'</td>'
+        cartItems.innerHTML+= '<th scope="row">'+cart[i].name+'</th><td> $'+cart[i].price+'</td><td>'+cart[i].quantity+'</td><td> $'+totalProduct[i].toFixed(2)+'</td>'
+        sumTotal+=totalProduct[i];
     }
-    totalPrice.innerHTML=calculateTotal();
-} 
+    totalPrice.innerHTML=sumTotal.toFixed(2);
+}  
+
+
+
 
 // ** Nivell II **
 
-// Exercise 
+// Exercise 8
 function addToCart(id) {
     // Refactor previous code in order to simplify it 
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+ let trobat = false;
+ let i = 0;
+ while (i < products.length && !trobat) {
+     if (id == products[i].id) {
+         trobat = true;
+ }
+     i++;
+ }
+ cartList.push(products[i - 1]);
+ cart = [...new Set(cartList)]; //crea un array nuevo con los elementos no repetidos
+ for (i = 0; i < cart.length; i++) {
+        cart[i].quantity = 0;
+    }
+   for (i = 0; i < cart.length; i++) {
+        for (j = 0; j < cartList.length; j++) {
+            if (cart[i].id === cartList[j].id) {
+                cart[i].quantity = cart[i].quantity + 1;
+            }
+        }
+    }
+console.log(cart);
 }
 
 // Exercise 9
