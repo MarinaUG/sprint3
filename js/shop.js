@@ -135,13 +135,13 @@ function applyPromotionsCart() {
     for (i = 0; i < cart.length; i++) {
         if (cart[i].id == 1 && cart[i].quantity > 2) {
             cart[i].price = 10;
-           
+            cart[i].subtotalWithDiscount=(cart[i].quantity*cart[i].price).toFixed(2);
         }
         if (cart[i].id == 3 && cart[i].quantity > 9) {
             cart[i].price = parseFloat(cart[i].price * (1 / 3)).toFixed(2);
-           
+            cart[i].subtotalWithDiscount=(cart[i].quantity*cart[i].price).toFixed(2);
         }
-        cart[i].subtotalWithDiscount=cart[i].quantity*cart[i].price;
+        
        
     } 
     console.log("promotion",cart);
