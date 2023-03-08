@@ -122,7 +122,9 @@ function generateCart(cartList) {
                 cart[i].quantity = cart[i].quantity + 1;
             }
         }
+        cart[i].subtotal=cart[i].quantity*cart[i].price;
     }
+
     console.log(cart);
 }
 
@@ -139,8 +141,10 @@ function applyPromotionsCart() {
             cart[i].price = parseFloat(cart[i].price * (1 / 3)).toFixed(2);
            
         }
+        cart[i].subtotalWithDiscount=cart[i].quantity*cart[i].price;
        
     } 
+    console.log("promotion",cart);
 }
 
 // Exercise 6
@@ -154,6 +158,8 @@ function applyPromotionsCart() {
     for(i=0; i<cart.length;i++){
         totalProduct[i]=cart[i].price*cart[i].quantity;
         cartItems.innerHTML+= '<th scope="row">'+cart[i].name+'</th><td> $'+cart[i].price+'</td><td>'+cart[i].quantity+'</td><td> $'+totalProduct[i].toFixed(2)+'</td>'
+       
+        
         sumTotal+=totalProduct[i];
     }
     totalPrice.innerHTML=sumTotal.toFixed(2);
@@ -188,6 +194,7 @@ function addToCart(id) {
                 cart[i].quantity = cart[i].quantity + 1;
             }
         }
+        cart[i].subtotal=cart[i].quantity*cart[i].price;
     }
 console.log(cart);
 }
